@@ -1,0 +1,15 @@
+apiVersion: emailapp.lemon.cn/v1
+kind: EamilApp
+metadata:
+  name: eamilapp-cr
+spec:
+  # Add fields here
+  appName: email-app-server
+  image: gdsz.harbor.com/experimental_images/nginx:v1
+  containerPort: 80
+  singlePodQPS: 500
+  totalQPS: 2000
+  cpuRequest: "200m"
+  cpuLimit: "200m"
+  memRequest: "128Mi"
+  memLimit: "256Mi"

@@ -1,0 +1,94 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.2.4
+  creationTimestamp: null
+  name: eamilapps.emailapp.lemon.cn
+spec:
+  group: emailapp.lemon.cn
+  names:
+    kind: EamilApp
+    listKind: EamilAppList
+    plural: eamilapps
+    singular: eamilapp
+  scope: Namespaced
+  validation:
+    openAPIV3Schema:
+      description: EamilApp is the Schema for the eamilapps API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: EamilAppSpec defines the desired state of EamilApp
+          properties:
+            appName:
+              description: Foo is an example field of EamilApp. Edit EamilApp_types.go
+                to remove/update
+              type: string
+            containerPort:
+              format: int32
+              type: integer
+            cpuLimit:
+              type: string
+            cpuRequest:
+              type: string
+            image:
+              type: string
+            memLimit:
+              type: string
+            memRequest:
+              type: string
+            singlePodQPS:
+              format: int32
+              type: integer
+            totalQPS:
+              format: int32
+              type: integer
+          required:
+          - appName
+          - containerPort
+          - cpuLimit
+          - cpuRequest
+          - image
+          - memLimit
+          - memRequest
+          - singlePodQPS
+          - totalQPS
+          type: object
+        status:
+          description: EamilAppStatus defines the observed state of EamilApp
+          properties:
+            realQPS:
+              description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster Important: Run "make" to regenerate code after modifying
+                this file'
+              format: int32
+              type: integer
+          required:
+          - realQPS
+          type: object
+      type: object
+  version: v1
+  versions:
+  - name: v1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

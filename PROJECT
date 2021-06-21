@@ -1,0 +1,7 @@
+domain: lemon.cn
+repo: email-app
+resources:
+- group: emailapp
+  kind: EamilApp
+  version: v1
+version: "2"

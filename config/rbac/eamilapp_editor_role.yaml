@@ -1,0 +1,26 @@
+# permissions to do edit eamilapps.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: eamilapp-editor-role
+rules:
+- apiGroups:
+  - emailapp.lemon.cn
+  resources:
+  - eamilapps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - emailapp.lemon.cn
+  resources:
+  - eamilapps/status
+  verbs:
+  - get
+  - patch
+  - update
