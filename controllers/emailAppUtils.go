@@ -111,11 +111,11 @@ func createDeployment(ctx context.Context, r *EamilAppReconciler, cr *emailappv1
 							Resources: corev1.ResourceRequirements{
 								Limits: corev1.ResourceList{
 									"cpu":    resource.MustParse(cr.Spec.CpuRequest),
-									"memory": resource.MustParse(cr.Spec.MemRequest),
+									"memory": resource.MustParse(cr.Spec.MemLimit),
 								},
 								Requests: corev1.ResourceList{
 									"cpu":    resource.MustParse(cr.Spec.CpuLimit),
-									"memory": resource.MustParse(cr.Spec.MemLimit),
+									"memory": resource.MustParse(cr.Spec.MemRequest),
 								},
 							},
 						},
