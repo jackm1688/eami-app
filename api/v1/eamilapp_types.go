@@ -22,7 +22,6 @@ import (
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // EamilAppSpec defines the desired state of EamilApp
 type EamilAppSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
@@ -41,6 +40,7 @@ type EamilAppSpec struct {
 }
 
 // EamilAppStatus defines the observed state of EamilApp
+// +kubebuilder:subresource:status
 type EamilAppStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
@@ -53,7 +53,15 @@ func (in *EamilApp) String() string {
 }
 
 // +kubebuilder:object:root=true
-
+// +kubebuilder:printcolumn:name="Deploy-name",type="string",JSONPath=".spec.appName",description="AppName of EamilApp"
+// +kubebuilder:printcolumn:name="SinglePodQPS",type="integer",JSONPath=".spec.singlePodQPS",description="SinglePodQPS of EamilApp"
+// +kubebuilder:printcolumn:name="TotalQPS",type="integer",JSONPath=".spec.totalQPS",description="TotalQPS of EamilApp"
+// +kubebuilder:printcolumn:name="CpuRequest",type="string",JSONPath=".spec.cpuRequest",description="CpuRequest of EamilApp"
+// +kubebuilder:printcolumn:name="CpuLimit",type="string",JSONPath=".spec.cpuLimit",description="CpuLimit of EamilApp"
+// +kubebuilder:printcolumn:name="MemRequest",type="string",JSONPath=".spec.memRequest",description="MemRequest of EamilApp"
+// +kubebuilder:printcolumn:name="MemLimit",type="string",JSONPath=".spec.memLimit",description="MemLimit of EamilApp"
+// +kubebuilder:printcolumn:name="Age",type="date",JSONPath=".metadata.creationTimestamp"
+// +kubebuilder:subresource:status
 // EamilApp is the Schema for the eamilapps API
 type EamilApp struct {
 	metav1.TypeMeta   `json:",inline"`

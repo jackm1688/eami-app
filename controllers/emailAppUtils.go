@@ -217,3 +217,7 @@ func updateDeployment(ctx context.Context, r *EamilAppReconciler, cr *emailappv1
 	log.Info("update deployment obj success")
 	return nil
 }
+
+func getDeployStatus(crx context.Context, r *EamilAppReconciler, cr *emailappv1.EamilApp, d *appsv1.Deployment) {
+
+}

@@ -8,6 +8,38 @@ metadata:
   creationTimestamp: null
   name: eamilapps.emailapp.lemon.cn
 spec:
+  additionalPrinterColumns:
+  - JSONPath: .spec.appName
+    description: AppName of EamilApp
+    name: Deploy-name
+    type: string
+  - JSONPath: .spec.singlePodQPS
+    description: SinglePodQPS of EamilApp
+    name: SinglePodQPS
+    type: integer
+  - JSONPath: .spec.totalQPS
+    description: TotalQPS of EamilApp
+    name: TotalQPS
+    type: integer
+  - JSONPath: .spec.cpuRequest
+    description: CpuRequest of EamilApp
+    name: CpuRequest
+    type: string
+  - JSONPath: .spec.cpuLimit
+    description: CpuLimit of EamilApp
+    name: CpuLimit
+    type: string
+  - JSONPath: .spec.memRequest
+    description: MemRequest of EamilApp
+    name: MemRequest
+    type: string
+  - JSONPath: .spec.memLimit
+    description: MemLimit of EamilApp
+    name: MemLimit
+    type: string
+  - JSONPath: .metadata.creationTimestamp
+    name: Age
+    type: date
   group: emailapp.lemon.cn
   names:
     kind: EamilApp
@@ -15,6 +47,8 @@ spec:
     plural: eamilapps
     singular: eamilapp
   scope: Namespaced
+  subresources:
+    status: {}
   validation:
     openAPIV3Schema:
       description: EamilApp is the Schema for the eamilapps API
@@ -32,7 +66,10 @@ spec:
         metadata:
           type: object
         spec:
-          description: EamilAppSpec defines the desired state of EamilApp
+          description: 'EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN! NOTE:
+            json tags are required.  Any new fields you add must have json tags for
+            the fields to be serialized. EamilAppSpec defines the desired state of
+            EamilApp'
           properties:
             appName:
               description: Foo is an example field of EamilApp. Edit EamilApp_types.go

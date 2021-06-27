@@ -75,7 +75,7 @@ func (r *EamilAppReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 			log.Info("create svc resource")
 			if err := createService(ctx, r, cr, req); err != nil {
 				log.Error(err, "create svc resource failed")
-				r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
+				//r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
 				return ctrl.Result{}, err
 			}
 			//create deployment resource
@@ -88,7 +88,7 @@ func (r *EamilAppReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 			//update status
 			if err := updateStatus(ctx, r, cr); err != nil {
 				log.Error(err, "update emailApp cr status failed")
-				r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
+				//r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
 				return ctrl.Result{}, err
 			}
 			return ctrl.Result{}, nil
@@ -100,13 +100,13 @@ func (r *EamilAppReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	//update deploy
 	if err := updateDeployment(ctx, r, cr, deployment); err != nil {
 		log.Error(err, "update deployment obj failed")
-		r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
+		//r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
 		return ctrl.Result{}, err
 	}
 	//update status
 	if err := updateStatus(ctx, r, cr); err != nil {
 		log.Error(err, "update cr status  failed")
-		r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
+		//r.Recorder.Eventf(cr, corev1.EventTypeWarning, "Error", err.Error())
 		return ctrl.Result{}, err
 	}
 	return ctrl.Result{}, nil
@@ -132,7 +132,7 @@ func (r *EamilAppReconciler) finalize(ctx context.Context, cr *emailappv1.EamilA
 			cr.ObjectMeta.Finalizers = append(cr.ObjectMeta.Finalizers, myFinalizerName)
 		} else {
 			//from CR 中删除自定义 finalizer 字段。
-			log.Info("")
+			log.Info("from CR 中删除自定义 finalizer 字段")
 		}
 	}
 	return nil
